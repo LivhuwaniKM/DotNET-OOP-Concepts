@@ -2,75 +2,72 @@
 {
     public class Polymorphism
     {
-        public class CalculateSalary
+        public string Main()
         {
-            public double Salary { get; set; }
-            public double Rate { get; set; }
-            public int Overtime { get; set; }
+            SalaryModel salaryModel = CreateSalaryModel();
 
-            public double GetWage()
-            {
-                return Salary + Rate * Overtime;
-            }
-        }
+            var historyOfCoding = Print(1950);
 
-        public string StructureOutput()
-        {
-            var output = $"Polymorphism Demo\n" +
-                $"=========================\n";
+            var calcualteSalary = Print(salaryModel);
+
+            var codingQuote = Print(
+                "Bjarne Stroustrup",
+                "C makes it easy to shoot yourself in the foot; C++ makes it harder, but when you do, it blows away your whole leg."
+                );
+
+            var output =
+                $"==============================\n" +
+                $"Polymorphism Demo\n" +
+                $"==============================\n\n" +
+                $"{historyOfCoding}\n\n\n" +
+                $"{calcualteSalary}\n\n\n" +
+                $"{codingQuote}";
+
             return output;
         }
-        public static void Print(string str)
-        {
-            Console.WriteLine(str);
-        }
 
-        public string Print()
+        public SalaryModel CreateSalaryModel()
         {
-            CalculateSalary cs = new()
+            return new()
             {
                 Salary = 30000,
-                Rate = 8,
+                Rate = 22.44,
                 Overtime = 15
             };
-
-            var output = StructureOutput();
-
-            output += $"Salary: {cs.Salary}\n" +
-                $"Rate: {cs.Rate}\n" +
-                $"Overtime: {cs.Overtime}\n" +
-                $"=========================\n" +
-                $"Calculated Salary: {cs.GetWage()}";
-
-            return output;
         }
 
-        public string Print(string str1, string str2)
+        public string Print(int year)
         {
-            var output = StructureOutput();
-            output += $"First Name: {str1}\n" +
-                $"Last Name: {str2}";
-
-            return output;
+            return $"Example 1:\n\n" +
+                $"The history of programming dates back to the early 19th century when mathematician Ada Lovelace created an algorithm for Charles Babbage's Analytical Engine, which is considered the first computer. However, the first actual programming language was developed in the {year}s, called FORTRAN.";
         }
 
-        public string Print(string str1, string str2, string str3)
+        public string Print(SalaryModel obj)
         {
-            string output = StructureOutput();
-
-            output += $"First Name: {str1}\nMiddle Name: {str2}\nLast Name: {str3}";
-
-            return output;
+            return $"Example 2:\n\n" +
+                $"Salary: {obj.Salary}\n" +
+                $"Rate: {obj.Rate}\n" +
+                $"Overtime: {obj.Overtime}\n" +
+                $"----------------\n" +
+                $"Total: R {obj.GetWage()}";
         }
 
-        public void Print(int a, string str)
+        public string Print(string author, string quote)
         {
-            Console.WriteLine($"{a}, {str}");
+            return
+                $"Example 3:\n\n" +
+                $"{quote}\n" +
+                $"- {author}";
         }
+    }
 
-        public void Print(string str, int a)
-        {
-            Console.WriteLine($"{a}, {str}");
-        }
+    public class SalaryModel
+    {
+        public double Salary { get; set; }
+        public double Rate { get; set; }
+        public int Overtime { get; set; }
+
+        public double GetWage() =>
+            Salary + Rate * Overtime;
     }
 }
