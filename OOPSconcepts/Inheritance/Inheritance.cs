@@ -2,30 +2,41 @@
 {
     public class Inheritance
     {
-        public string EmployeeDetails()
+        public string Main()
         {
-            Employee employee = new();
-            string output = string.Format($"Inheritance Demo\n" +
+            Employee employee = new()
+            {
+                FirstName = "John",
+                LastName = "Doe",
+                EmployeeId = 126,
+                CompanyName = "ABC Solutions",
+                Role = "Developer"
+            };
+
+            string output =
+                $"=============================\n" +
+                $"Inheritance Demo\n" +
                 $"=============================\n" +
                 $"First Name: {employee.FirstName}\n" +
                 $"Last Name: {employee.LastName}\n" +
                 $"Employee ID: {employee.EmployeeId}\n" +
-                $"Company Name: {employee.CompanyName}");
+                $"Company Name: {employee.CompanyName}\n" +
+                $"Employee Role: {employee.Role}";
+
             return output;
         }
     }
 
-    // base/parent class
     class Person
     {
-        public string FirstName { get; set; } = "Livhu";
-        public string LastName { get; set; } = "Masindi";
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
     }
 
-    // derived/child class
     class Employee : Person
     {
-        public int EmployeeId { get; set; } = 123;
-        public string CompanyName { get; set; } = "ABC123";
+        public int EmployeeId { get; set; }
+        public string CompanyName { get; set; } = string.Empty;
+        public string Role { get; set; } = string.Empty;
     }
 }

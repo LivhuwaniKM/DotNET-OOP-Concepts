@@ -2,20 +2,33 @@
 {
     public class Encapsulation
     {
+        public string Main()
+        {
+            UserDetails user = new()
+            {
+                FirstName = "John",
+                LastName = "Doe"
+            };
+
+            string output =
+                $"==========================\n" +
+                $"Encapsulation Demo\n" +
+                $"==========================\n" +
+                $"Full Name: {user.FirstName} {user.LastName}";
+
+            return output;
+        }
+    }
+
+    public class UserDetails
+    {
         private string _firstName = string.Empty;
-        private string _middleName = string.Empty;
         private string _lastName = string.Empty;
 
         public string FirstName
         {
             get { return _firstName; }
             set { _firstName = value; }
-        }
-
-        public string MiddleName
-        {
-            get { return _middleName; }
-            set { _middleName = value; }
         }
 
         public string LastName
@@ -26,22 +39,7 @@
 
         public string FullName()
         {
-            return string.Format($"{FirstName} {MiddleName} {LastName}");
-        }
-    }
-
-    public class AccessUser
-    {
-        public string Details()
-        {
-            Encapsulation user = new()
-            {
-                FirstName = "Livhuwani",
-                MiddleName = "Khathutshelo",
-                LastName = "Masindi"
-            };
-
-            return user.FullName();
+            return string.Format($"{FirstName} {LastName}");
         }
     }
 }
