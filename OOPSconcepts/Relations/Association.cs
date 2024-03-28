@@ -1,17 +1,21 @@
 ﻿namespace OOPSconcepts.Relations
 {
-    public class Car
+    public class Association
     {
-        public int Id { get; set; }
-        public string Model { get; set; } = string.Empty;
-        public string Make { get; set; } = string.Empty;
-        public string Code { get; set; } = string.Empty;
-        public DateTime Year { get; set; }
-        public string FuelType { get; set; } = string.Empty;
-    }
+        public string Main()
+        {
+            Car car = GetCar();
+            var carDescription = CreateDisplayForCar(car);
 
-    public class CarRepository
-    {
+            var output =
+                $"==============================\n" +
+                $"Class Relations: Association\n" +
+                $"==============================\n" +
+                $"\n{carDescription}";
+
+            return output;
+        }
+
         public Car GetCar()
         {
             return new()
@@ -20,22 +24,16 @@
                 Model = "300CE",
                 Make = "Mercedes Benz",
                 Code = "W124",
-                Year = DateTime.Parse("1991"),
+                Year = DateTime.Now,
                 FuelType = "Petrol"
             };
         }
-        public void SaveCar()
-        {
-            // Insert any logic for db queries if any
-            Console.WriteLine($"Request has been processed succesfully");
-        }
 
-        public string DisplayCar()
+        public string CreateDisplayForCar(Car car)
         {
-            var car = GetCar();
             var displayOutput = (
                 $"Car Properties\n" +
-                $"==================\n" +
+                $"------------------------------\n" +
                 $"Model: {car.Model}\n" +
                 $"Make: {car.Make}\n" +
                 $"Year: {car.Year}\n" +
@@ -43,5 +41,15 @@
             );
             return displayOutput;
         }
+    }
+
+    public class Car
+    {
+        public int Id { get; set; }
+        public string Model { get; set; } = string.Empty;
+        public string Make { get; set; } = string.Empty;
+        public string Code { get; set; } = string.Empty;
+        public DateTime Year { get; set; }
+        public string FuelType { get; set; } = string.Empty;
     }
 }

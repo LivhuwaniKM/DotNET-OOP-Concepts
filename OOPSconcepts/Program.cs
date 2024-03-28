@@ -2,6 +2,7 @@ using OOPSconcepts.Abstraction;
 using OOPSconcepts.Encapsulation;
 using OOPSconcepts.Inheritance;
 using OOPSconcepts.polymorphism;
+using OOPSconcepts.Relations;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
@@ -38,6 +39,14 @@ app.MapGet("/polymorphism", async context =>
 {
     Polymorphism obj = new();
     await context.Response.WriteAsync($"{obj.Main()}");
+});
+
+app.MapGet("/classrelations", async context =>
+{
+    Association obj1 = new();
+    Composition obj2 = new();
+
+    await context.Response.WriteAsync($"{obj1.Main()}\n\n{obj2.Main()}");
 });
 
 app.MapGet("/srp", async context =>
