@@ -4,6 +4,8 @@ using OOPSconcepts.Inheritance;
 using OOPSconcepts.polymorphism;
 using OOPSconcepts.Relations;
 using OOPSconcepts.SolidPrinciples._1_SRP;
+using OOPSconcepts.SolidPrinciples._2_OCP;
+using OOPSconcepts.SolidPrinciples._3_LSP;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
@@ -46,19 +48,25 @@ app.MapGet("/classrelations", async context =>
 {
     Association obj1 = new();
     Composition obj2 = new();
-
     await context.Response.WriteAsync($"{obj1.Main()}\n\n{obj2.Main()}");
 });
 
 app.MapGet("/srp", async context =>
 {
     SRP obj = new();
-
     await context.Response.WriteAsync($"{obj.Main()}");
 });
 
 app.MapGet("/ocp", async context =>
 {
+    OCP obj = new();
+    await context.Response.WriteAsync($"{obj.Main()}");
+});
+
+app.MapGet("/lsp", async context =>
+{
+    LSP obj = new();
+    await context.Response.WriteAsync($"{obj.Main()}");
 });
 
 app.MapGet("/isp", async context =>

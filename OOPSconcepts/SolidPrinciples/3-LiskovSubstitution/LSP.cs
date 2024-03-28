@@ -1,52 +1,60 @@
 ﻿namespace OOPSconcepts.SolidPrinciples._3_LSP
 {
-    // Liskov Substitution Responsibility
     public class LSP
     {
-        // main project hub
-        public static void Main()
+        public string Main()
         {
+            Vehicle vehicle = new();
             Car car = new();
-
             Garage garage = new();
 
-            garage.OperateVehicle(car);
+            var interchangeableClassOutput = garage.OperateVehicle(car);
+
+            return
+                $"============================================\n" +
+                $"Liskov Substitution Responsibility\n" +
+                $"============================================\n\n" +
+                $"{vehicle.StartEngine()} - [from Vehicle class]\n" +
+                $"{vehicle.StopEngine()} - [from Vehicle class]\n\n" +
+                $"{car.StartEngine()} - [from Car class]\n" +
+                $"{car.StopEngine()} - [from Car class]\n\n" +
+                $"{interchangeableClassOutput}";
         }
     }
 
     public class Vehicle
     {
-        public virtual void StartEngine()
+        public virtual string StartEngine()
         {
-            Console.WriteLine("Engine started");
+            return "Engine started";
         }
 
-        public virtual void StopEngine()
+        public virtual string StopEngine()
         {
-            Console.WriteLine("Engine stop");
+            return "Engine stop";
         }
     }
 
     public class Car : Vehicle
     {
-        public override void StartEngine()
+        public override string StartEngine()
         {
-            Console.WriteLine("Car engine started");
+            return "Car engine started";
         }
 
-        public override void StopEngine()
+        public override string StopEngine()
         {
-            Console.WriteLine("Car engine stopped");
+            return "Car engine stopped";
         }
     }
 
     public class Garage
     {
-        public void OperateVehicle(Vehicle vehicle)
+        public string OperateVehicle(Vehicle vehicle)
         {
-            vehicle.StartEngine();
-
-            vehicle.StopEngine();
+            return
+                $"{vehicle.StartEngine()} - [from Garage class]\n" +
+                $"{vehicle.StopEngine()} - [from Garage class]";
         }
     }
 }
