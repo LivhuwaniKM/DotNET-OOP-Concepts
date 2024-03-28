@@ -3,6 +3,7 @@ using OOPSconcepts.Encapsulation;
 using OOPSconcepts.Inheritance;
 using OOPSconcepts.polymorphism;
 using OOPSconcepts.Relations;
+using OOPSconcepts.SolidPrinciples._1_SRP;
 
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
@@ -51,6 +52,9 @@ app.MapGet("/classrelations", async context =>
 
 app.MapGet("/srp", async context =>
 {
+    SRP obj = new();
+
+    await context.Response.WriteAsync($"{obj.Main()}");
 });
 
 app.MapGet("/ocp", async context =>
